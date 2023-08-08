@@ -1,0 +1,43 @@
+<h1 class="mt-5">Add Product</h1>
+<hr>
+
+<form [formGroup]="myForm">
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+            <label class="col-form-label">Name:</label>
+        </div>
+
+        <div class="col-auto">
+            <input formControlName="name" class="form-control" type="text">
+        </div>
+
+        <div class="col-auto">
+            <span *ngIf="inputValidate('name')" [validateField]="!inputValidate('name')" [message]="testMessage" [color]="color" errorMessage></span>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <button (click)="changeMessage()" class="btn btn-primary">
+              Save
+            </button>
+            <!-- sentencia útil para realizar separación -->
+            &nbsp;
+            <button (click)="changeColor()" class="btn btn-primary">
+              Change color
+            </button>
+        </div>
+    </div>
+</form>
+
+<h3 class="mt-5">Form</h3>
+<pre>Value: {{ myForm.value | json }}</pre>
+<pre>Valid: {{ myForm.valid }}</pre>
+
+<div *customIf="myForm.valid" class="row mt-5">
+    <div class="col">
+        <div class="alert alert-primary">
+            All is okey
+        </div>
+    </div>
+</div>
